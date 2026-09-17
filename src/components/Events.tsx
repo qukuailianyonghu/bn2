@@ -236,8 +236,8 @@ export default function Events() {
               <p className="text-[9px] uppercase tracking-[0.25em] text-white/80">BANLING</p>
             </div>
           </div>
-          <h1 className="mt-7 font-serif text-[27px] font-bold leading-tight tracking-wide">人生记忆银行</h1>
-          <p className="mt-2 text-sm tracking-wide text-white/90">多年后我们希望这个世界还记得，我们曾经来过</p>
+          <h1 className="mt-7 font-serif text-[27px] font-bold leading-tight tracking-wide">同城活动</h1>
+          <p className="mt-2 text-sm tracking-wide text-white/90">参与有趣的活动，遇见更好的自己</p>
           <div className="mt-5 h-0.5 w-10 bg-[#f5d6a1]" />
         </div>
       </section>
