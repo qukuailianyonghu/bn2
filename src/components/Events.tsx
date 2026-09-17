@@ -306,8 +306,8 @@ export default function Events() {
                 <div key={cat} className={`bg-white rounded-2xl overflow-hidden shadow-sm border ${meta.border}`}>
                   <div className="relative h-40">
                     <img src={EVENT_IMGS[cat]} alt={CATEGORY_LABELS[cat]} className="w-full h-full object-cover" />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${meta.accent} opacity-55`} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                    {/*<div className={`absolute inset-0 bg-gradient-to-br ${meta.accent} opacity-55`} />*/}
+                    {/*<div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />*/}
                     <div className={`absolute top-4 left-4 w-11 h-11 rounded-2xl ${meta.badgeBg} flex items-center justify-center text-2xl shadow-lg ring-2 ring-white/30`}>
                       {meta.icon}
                     </div>
