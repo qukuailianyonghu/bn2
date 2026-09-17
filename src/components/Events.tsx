@@ -226,7 +226,7 @@ export default function Events() {
       {/* Hero — warm sunset image with brown overlay */}
       <section className="relative h-[260px] overflow-hidden">
         <img src={getImageUrl('event_top.jpg')} alt="人生记忆" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#3b2b25]/60 via-[#5e4030]/35 to-[#4c3327]/85" />
+        {/*<div className="absolute inset-0 bg-gradient-to-b from-[#3b2b25]/60 via-[#5e4030]/35 to-[#4c3327]/85" />*/}
         <div className="relative z-10 px-6 pt-9 text-white">
           <div className="flex items-center gap-2">
             <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/15 backdrop-blur-sm">
