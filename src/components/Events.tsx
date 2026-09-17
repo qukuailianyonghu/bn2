@@ -245,22 +245,12 @@ export default function Events() {
 
       {/* Floating cream card overlapping hero */}
       <section className="relative z-20 -mt-6 px-4">
-        {/*<div className="rounded-[24px] border border-white/70 bg-[#f8f0e2]/95 px-4 py-4 shadow-[0_14px_35px_rgba(111,66,29,0.14)] backdrop-blur-sm sm:px-5">*/}
-        {/*  <p className="text-[15px] leading-relaxed text-[#806c58]">*/}
-        {/*    在这里，珍藏你的故事与回忆。人生每一段时光都值得被记住——无论是旅途的风景、岁月的照片，还是心中的梦想。*/}
-        {/*  </p>*/}
-        {/*  /!*<div className="mt-3 flex items-center gap-2 text-xs text-[#a28d77]">*!/*/}
-        {/*  /!*  <ShieldCheck className="h-4 w-4 text-[#c8893e]" />*!/*/}
-        {/*  /!*  <span>本人確認制 · 安心安全のコミュニティ</span>*!/*/}
-        {/*  /!*</div>*!/*/}
-        {/*</div>*/}
-
         {/* Tab switcher */}
         <div className="flex bg-gray-100 rounded-xl p-1 mb-5">
-          <button onClick={() => setTab('themes')} className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === 'themes' ? 'bg-white text-rose-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+          <button onClick={() => setTab('themes')} className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === 'themes' ? 'bg-white text-rose-600 shadow-sm' : 'text-oshiruco-400 hover:text-oshiruco-600'}`}>
             活动主题
           </button>
-          <button onClick={() => setTab('events')} className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === 'events' ? 'bg-white text-rose-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+          <button onClick={() => setTab('events')} className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === 'events' ? 'bg-white text-rose-600 shadow-sm' : 'text-oshiruco-400 hover:text-oshiruco-600'}`}>
             全部活动
           </button>
         </div>
