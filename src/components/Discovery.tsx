@@ -126,6 +126,7 @@ function HeroCarousel({ profile }: { profile: { full_name?: string } | null }) {
 
           {/*<div className="absolute inset-0 bg-gradient-to-b from-oshiruco-900/40 via-oshiruco-900/15 to-oshiruco-900/70" />*/}
 
+          <div className="absolute inset-0 bg-gradient-to-b from-[#3b2b25]/60 via-[#5e4030]/35 to-[#4c3327]/85" />
 
 
           <div className="relative z-10 px-6 pt-9 text-white">
@@ -139,9 +140,10 @@ function HeroCarousel({ profile }: { profile: { full_name?: string } | null }) {
               </div>
             </div>
             <h1 className="mt-7 font-serif text-[27px] font-bold leading-tight tracking-wide">让人生下一城 <br/> 更加精彩</h1>
-            <div>
+
+            <div className="mt-7 flex items-center gap-2">
               <p className="text-white font-semibold text-sm flex items-center gap-1 drop-shadow">
-                {HERO_SLIDES[current].location}
+                旅行 . 价值 . 生活 . 人生
               </p>
             </div>
 
