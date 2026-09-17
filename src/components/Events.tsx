@@ -336,23 +336,23 @@ export default function Events() {
                     </div>
 
                     <div className="flex gap-2">
-                      {registered ? (
-                        <button
-                          onClick={() => handleUnregister(cat)}
-                          disabled={busy}
-                          className={`flex-1 py-2.5 rounded-xl text-sm font-semibold transition-colors ${meta.regBtnActive} disabled:opacity-50`}
-                        >
-                          {busy ? '处理中…' : '取消订阅'}
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => openRegModal(cat)}
-                          disabled={busy}
-                          className={`flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition-opacity ${meta.regBtn} disabled:opacity-50`}
-                        >
-                          {busy ? '处理中…' : '订阅主题'}
-                        </button>
-                      )}
+                      {/*{registered ? (*/}
+                      {/*  <button*/}
+                      {/*    onClick={() => handleUnregister(cat)}*/}
+                      {/*    disabled={busy}*/}
+                      {/*    className={`flex-1 py-2.5 rounded-xl text-sm font-semibold transition-colors ${meta.regBtnActive} disabled:opacity-50`}*/}
+                      {/*  >*/}
+                      {/*    {busy ? '处理中…' : '取消订阅'}*/}
+                      {/*  </button>*/}
+                      {/*) : (*/}
+                      {/*  <button*/}
+                      {/*    onClick={() => openRegModal(cat)}*/}
+                      {/*    disabled={busy}*/}
+                      {/*    className={`flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition-opacity ${meta.regBtn} disabled:opacity-50`}*/}
+                      {/*  >*/}
+                      {/*    {busy ? '处理中…' : '订阅主题'}*/}
+                      {/*  </button>*/}
+                      {/*)}*/}
                       <button
                         onClick={() => { setActiveCategory(cat); setTab('events'); }}
                         className={`flex-1 py-2.5 rounded-xl text-white text-sm font-semibold bg-gradient-to-r ${meta.accent} flex items-center justify-center gap-1.5 shadow hover:opacity-90 transition-opacity`}
