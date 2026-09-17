@@ -4,7 +4,21 @@ import { useAuth } from '../context/AuthContext';
 import type { Event, ThemeRegistration } from '../lib/database.types';
 import EventDetail from './EventDetail';
 import { createOrder } from '../lib/createOrder';
-import { Calendar, MapPin, Users, Plus, Clock, Tag, X, CheckCircle, Star, ChevronRight, ChevronLeft, Wallet } from 'lucide-react';
+import {
+  Calendar,
+  MapPin,
+  Users,
+  Plus,
+  Clock,
+  Tag,
+  X,
+  CheckCircle,
+  Star,
+  ChevronRight,
+  ChevronLeft,
+  Wallet,
+  BookOpen
+} from 'lucide-react';
 
 const CATEGORIES = ['social', 'cultural', 'outdoor', 'food', 'wellness', 'tour', 'workshop'];
 const CATEGORY_LABELS: Record<string, string> = {
@@ -202,22 +216,44 @@ export default function Events() {
   const upcoming = filtered.filter(e => new Date(e.event_date) >= new Date());
   const past = filtered.filter(e => new Date(e.event_date) < new Date());
 
+  const HERO_IMAGE = 'https://images.pexels.com/photos/4080388/pexels-photo-4080388.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
+
+
   return (
     <div className="pb-24">
-      <div className="relative px-6 pt-8 pb-6 overflow-hidden">
-        <img
-          src="https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?w=800"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-rose-800/80 via-rose-700/60 to-pink-700/50" />
-        <div className="relative">
-          <h1 className="text-2xl font-bold text-white mb-1">活动</h1>
-          <p className="text-white/90 text-sm">参加聚会，留下美好回忆</p>
-        </div>
-      </div>
 
-      <div className="px-4 mt-4">
+      {/* Hero — warm sunset image with brown overlay */}
+      <section className="relative h-[260px] overflow-hidden">
+        <img src={HERO_IMAGE} alt="人生记忆" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#3b2b25]/60 via-[#5e4030]/35 to-[#4c3327]/85" />
+        <div className="relative z-10 px-6 pt-9 text-white">
+          <div className="flex items-center gap-2">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/15 backdrop-blur-sm">
+              <BookOpen className="h-6 w-6" strokeWidth={1.6} />
+            </div>
+            <div>
+              <p className="font-serif text-xl font-bold tracking-[0.16em]">伴龄</p>
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/80">BANLING</p>
+            </div>
+          </div>
+          <h1 className="mt-7 font-serif text-[27px] font-bold leading-tight tracking-wide">人生记忆银行</h1>
+          <p className="mt-2 text-sm tracking-wide text-white/90">多年后我们希望这个世界还记得，我们曾经来过</p>
+          <div className="mt-5 h-0.5 w-10 bg-[#f5d6a1]" />
+        </div>
+      </section>
+
+      {/* Floating cream card overlapping hero */}
+      <section className="relative z-20 -mt-6 px-4">
+        {/*<div className="rounded-[24px] border border-white/70 bg-[#f8f0e2]/95 px-4 py-4 shadow-[0_14px_35px_rgba(111,66,29,0.14)] backdrop-blur-sm sm:px-5">*/}
+        {/*  <p className="text-[15px] leading-relaxed text-[#806c58]">*/}
+        {/*    在这里，珍藏你的故事与回忆。人生每一段时光都值得被记住——无论是旅途的风景、岁月的照片，还是心中的梦想。*/}
+        {/*  </p>*/}
+        {/*  /!*<div className="mt-3 flex items-center gap-2 text-xs text-[#a28d77]">*!/*/}
+        {/*  /!*  <ShieldCheck className="h-4 w-4 text-[#c8893e]" />*!/*/}
+        {/*  /!*  <span>本人確認制 · 安心安全のコミュニティ</span>*!/*/}
+        {/*  /!*</div>*!/*/}
+        {/*</div>*/}
+
         {/* Tab switcher */}
         <div className="flex bg-gray-100 rounded-xl p-1 mb-5">
           <button onClick={() => setTab('themes')} className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === 'themes' ? 'bg-white text-rose-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
@@ -227,6 +263,32 @@ export default function Events() {
             全部活动
           </button>
         </div>
+
+      </section>
+
+      {/*<div className="relative px-6 pt-8 pb-6 overflow-hidden">*/}
+      {/*  <img*/}
+      {/*    src="https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?w=800"*/}
+      {/*    alt=""*/}
+      {/*    className="absolute inset-0 w-full h-full object-cover"*/}
+      {/*  />*/}
+      {/*  <div className="absolute inset-0 bg-gradient-to-r from-rose-800/80 via-rose-700/60 to-pink-700/50" />*/}
+      {/*  <div className="relative">*/}
+      {/*    <h1 className="text-2xl font-bold text-white mb-1">活动</h1>*/}
+      {/*    <p className="text-white/90 text-sm">参加聚会，留下美好回忆</p>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
+
+      <div className="px-4 mt-4">
+        {/* Tab switcher */}
+        {/*<div className="flex bg-gray-100 rounded-xl p-1 mb-5">*/}
+        {/*  <button onClick={() => setTab('themes')} className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === 'themes' ? 'bg-white text-rose-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>*/}
+        {/*    活动主题*/}
+        {/*  </button>*/}
+        {/*  <button onClick={() => setTab('events')} className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === 'events' ? 'bg-white text-rose-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>*/}
+        {/*    全部活动*/}
+        {/*  </button>*/}
+        {/*</div>*/}
 
         {/* ── THEMES TAB ── */}
         {tab === 'themes' && (
