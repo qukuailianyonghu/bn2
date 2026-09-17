@@ -13,12 +13,12 @@ import {
   Tag,
   X,
   CheckCircle,
-  Star,
   ChevronRight,
-  ChevronLeft,
   Wallet,
   BookOpen
 } from 'lucide-react';
+
+
 
 const CATEGORIES = ['social', 'cultural', 'outdoor', 'food', 'wellness', 'tour', 'workshop'];
 const CATEGORY_LABELS: Record<string, string> = {
@@ -151,8 +151,6 @@ export default function Events() {
 
   const isRegistered = (cat: string) => registrations.some(r => r.theme_id === toThemeId(cat));
 
-  const openRegModal = (cat: string) => { setRegCat(cat); setRegNote(''); setShowRegModal(true); };
-
   const handleRegister = async () => {
     if (!user || !regCat) return;
     setRegLoading(l => ({ ...l, [regCat]: true }));
@@ -216,15 +214,18 @@ export default function Events() {
   const upcoming = filtered.filter(e => new Date(e.event_date) >= new Date());
   const past = filtered.filter(e => new Date(e.event_date) < new Date());
 
-  const HERO_IMAGE = 'https://images.pexels.com/photos/4080388/pexels-photo-4080388.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
-
+  // const HERO_IMAGE = 'src/images/event_top.jpg';
+  // 封装一个动态获取本地图片的函数
+  const getImageUrl = (name: string) => {
+    return new URL(`../images/${name}`, import.meta.url).href;
+  };
 
   return (
     <div className="pb-24">
 
       {/* Hero — warm sunset image with brown overlay */}
       <section className="relative h-[260px] overflow-hidden">
-        <img src={HERO_IMAGE} alt="人生记忆" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={getImageUrl('event_top.jpg')} alt="人生记忆" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#3b2b25]/60 via-[#5e4030]/35 to-[#4c3327]/85" />
         <div className="relative z-10 px-6 pt-9 text-white">
           <div className="flex items-center gap-2">
