@@ -2,7 +2,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
 import type { Destination, Post } from '../lib/database.types';
-import { MapPin, Star, Heart, MessageCircle, Search, TrendingUp, Globe, ChevronLeft, ChevronRight, ArrowRight, ArrowUp, Sparkles } from 'lucide-react';
+import {
+  MapPin,
+  Star,
+  Heart,
+  MessageCircle,
+  Search,
+  TrendingUp,
+  Globe,
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  ArrowUp,
+  Sparkles,
+  BookOpen
+} from 'lucide-react';
 import DestinationDetail from './DestinationDetail';
 import PostDetail from './PostDetail';
 
@@ -50,12 +64,16 @@ const SCROLL_BANNER_IMAGES = [
   'https://images.pexels.com/photos/2225442/pexels-photo-2225442.jpeg?auto=compress&cs=tinysrgb&w=600',
 ];
 
+const getImageUrl = (name: string) => {
+  return new URL(`../images/${name}`, import.meta.url).href;
+};
+
 const HERO_SLIDES = [
-  { image: 'https://oshiruco.com/wp-content/uploads/2026/03/iStock-1388251518-720x407.jpg', location: '优雅银发 · 自信笑容' },
-  { image: 'https://oshiruco.com/wp-content/uploads/2026/02/iStock-1606605567-720x480.webp', location: '携手同行 · 温暖时光' },
-  { image: 'https://oshiruco.com/wp-content/uploads/2025/09/iStock-2226631445-720x480.jpg', location: '从容岁月 · 沉淀之美' },
-  { image: 'https://oshiruco.com/wp-content/uploads/2025/03/image3-720x480.jpg', location: '银发风采 · 乐享生活' },
-  { image: 'https://oshiruco.com/wp-content/uploads/2026/03/iStock-1459328710-720x480.jpg', location: '银发风采 · 乐享生活' },
+  { image: getImageUrl('d1.jpg'), location: '旅行' },
+  { image: getImageUrl('d2.jpg'), location: '生活' },
+  { image: getImageUrl('d3.jpg'), location: '陪伴' },
+  { image: getImageUrl('d4.jpg'), location: '价值' },
+  { image: getImageUrl('d5.jpg'), location: '乐享' },
 ];
 
 function HeroCarousel({ profile }: { profile: { full_name?: string } | null }) {
@@ -89,49 +107,44 @@ function HeroCarousel({ profile }: { profile: { full_name?: string } | null }) {
 
   const parallaxOffset = Math.min(scrollY * 0.4, 60);
 
+
+
   return (
-      <div className="relative h-56 overflow-hidden">
-        {HERO_SLIDES.map((slide, i) => (
-            <div key={i} className="absolute inset-0 transition-opacity duration-700" style={{ opacity: i === current ? 1 : 0 }}>
-              <img
-                  src={slide.image}
-                  alt={slide.location}
-                  className="w-full h-full object-cover will-change-transform"
-                  style={{ transform: `translateY(${parallaxOffset}px) scale(1.2)`, transformOrigin: 'center top' }}
-              />
-            </div>
-        ))}
+      <div className="relative h-76 overflow-hidden">
+        {/* Hero — warm sunset image with brown overlay */}
+        <section className="relative h-[260px] overflow-hidden">
+          {HERO_SLIDES.map((slide, i) => (
+              <div key={i} className="absolute inset-0 transition-opacity duration-700" style={{ opacity: i === current ? 1 : 0 }}>
+                <img
+                    src={slide.image}
+                    alt={slide.location}
+                    className="w-full h-full object-cover will-change-transform"
+                    style={{ transform: `translateY(${parallaxOffset}px) scale(1.2)`, transformOrigin: 'center top' }}
+                />
+              </div>
+          ))}
 
-        <div className="absolute inset-0 bg-gradient-to-b from-oshiruco-900/40 via-oshiruco-900/15 to-oshiruco-900/70" />
+          {/*<div className="absolute inset-0 bg-gradient-to-b from-oshiruco-900/40 via-oshiruco-900/15 to-oshiruco-900/70" />*/}
 
-        <div className="absolute inset-0 flex flex-col justify-between px-5 pt-7 pb-5">
-          <div>
-            <p className="text-white/80 text-sm font-medium drop-shadow">
-              {new Date().getHours() < 12 ? '早上好' : new Date().getHours() < 17 ? '下午好' : '晚上好'}，{profile?.full_name?.split(' ')[0] || '旅行者'}
-            </p>
-            {/*<h1 className="font-serif text-3xl font-bold text-white tracking-tight drop-shadow-lg mt-1 text-shadow-warm">*/}
-            {/*  <span className="heading-italic">もっと</span>発見する*/}
-            {/*</h1>*/}
-          </div>
 
-          <div>
-            <div className="flex items-end justify-between mb-3">
+
+          <div className="relative z-10 px-6 pt-9 text-white">
+            <div className="flex items-center gap-2">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/15 backdrop-blur-sm">
+                <BookOpen className="h-6 w-6" strokeWidth={1.6} />
+              </div>
               <div>
-                {/*<p className="text-white/60 text-[10px] uppercase tracking-widest mb-0.5">当前目的地</p>*/}
-                <p className="text-white font-semibold text-sm flex items-center gap-1 drop-shadow">
-                  {/*<MapPin className="w-3.5 h-3.5" />*/}
-                  {HERO_SLIDES[current].location}
-                </p>
-              </div>
-              <div className="flex gap-1.5">
-                <button onClick={prev} className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/35 transition">
-                  <ChevronLeft className="w-4 h-4 text-white" />
-                </button>
-                <button onClick={next} className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/35 transition">
-                  <ChevronRight className="w-4 h-4 text-white" />
-                </button>
+                <p className="font-serif text-xl font-bold tracking-[0.16em]">伴龄</p>
+                <p className="text-[9px] uppercase tracking-[0.25em] text-white/80">BANLING</p>
               </div>
             </div>
+            <h1 className="mt-7 font-serif text-[27px] font-bold leading-tight tracking-wide">让人生下一城 <br/> 更加精彩</h1>
+            <div>
+              <p className="text-white font-semibold text-sm flex items-center gap-1 drop-shadow">
+                {HERO_SLIDES[current].location}
+              </p>
+            </div>
+
             <div className="flex gap-1.5">
               {HERO_SLIDES.map((_, i) => (
                   <button
@@ -141,9 +154,41 @@ function HeroCarousel({ profile }: { profile: { full_name?: string } | null }) {
                   />
               ))}
             </div>
+
+
+            {/*<div className="mt-5 h-0.5 w-10 bg-[#f5d6a1]" />*/}
+
           </div>
-        </div>
+
+          {/*<div className="absolute inset-0 flex flex-col justify-between px-5 pt-7 pb-5">*/}
+          {/*  <div>*/}
+          {/*    <div className="flex items-end justify-between mb-3">*/}
+          {/*      <div>*/}
+          {/*        /!*<p className="text-white/60 text-[10px] uppercase tracking-widest mb-0.5">当前目的地</p>*!/*/}
+          {/*        <p className="text-white font-semibold text-sm flex items-center gap-1 drop-shadow">*/}
+          {/*          /!*<MapPin className="w-3.5 h-3.5" />*!/*/}
+          {/*          {HERO_SLIDES[current].location}*/}
+          {/*        </p>*/}
+          {/*      </div>*/}
+          {/*      <div className="flex gap-1.5">*/}
+          {/*        <button onClick={prev} className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/35 transition">*/}
+          {/*          <ChevronLeft className="w-4 h-4 text-white" />*/}
+          {/*        </button>*/}
+          {/*        <button onClick={next} className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/35 transition">*/}
+          {/*          <ChevronRight className="w-4 h-4 text-white" />*/}
+          {/*        </button>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+
+          {/*  </div>*/}
+          {/*</div>*/}
+
+
+        </section>
+
       </div>
+
+
   );
 }
 
@@ -228,15 +273,15 @@ export default function Discovery() {
     return matchCat && matchSearch;
   });
 
+
+
   return (
       <div className="pb-24">
         <HeroCarousel profile={profile} />
-
         {/* Quote banner */}
-        <div className="bg-oshiruco-600 px-5 py-3">
-          <p className="text-oshiruco-100 text-xs italic leading-relaxed text-center font-serif">{quote}</p>
-        </div>
-
+        {/*<div className="bg-oshiruco-600 px-5 py-3">*/}
+        {/*  <p className="text-oshiruco-100 text-xs italic leading-relaxed text-center font-serif">{quote}</p>*/}
+        {/*</div>*/}
         {/* Section title — editorial style */}
         <div className="px-4 mt-6 mb-4">
           {/*<h2 className="font-serif text-xl font-bold text-oshiruco-900 flex items-center gap-2">*/}
