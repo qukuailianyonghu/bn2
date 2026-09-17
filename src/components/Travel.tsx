@@ -2,7 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
 import type { Trip, ThemeRegistration } from '../lib/database.types';
-import { Plane, Plus, Calendar, MapPin, Globe, Lock, Clock, CheckCircle2, X, Star, ChevronRight, Users, ArrowRight, Wallet } from 'lucide-react';
+import {
+  Plane,
+  Plus,
+  Calendar,
+  MapPin,
+  Globe,
+  Lock,
+  Clock,
+  CheckCircle2,
+  X,
+  Star,
+  ChevronRight,
+  Users,
+  ArrowRight,
+  Wallet,
+  BookOpen
+} from 'lucide-react';
 import ThemeDetail, { type TravelTheme } from './ThemeDetail';
 import TripDetail from './TripDetail';
 import { createOrder } from '../lib/createOrder';
@@ -229,31 +245,50 @@ export default function Travel() {
 
   const trips = tab === 'my' ? myTrips : myTrips;
 
+  const getImageUrl = (name: string) => {
+    return new URL(`../images/${name}`, import.meta.url).href;
+  };
+
   return (
     <div className="pb-24">
-      {/* Hero */}
-      <div className="relative px-6 pt-8 pb-6 overflow-hidden">
-        <img src="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?w=800" alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-oshiruco-900/85 via-oshiruco-800/65 to-oshiruco-700/50" />
-        <div className="relative">
-          <h1 className="font-serif text-2xl font-bold text-white mb-1 text-shadow-warm">
-            <span className="heading-italic">世界很大</span>也很美好
-          </h1>
-          <p className="text-white/90 text-sm">主题、计划与探险之旅</p>
+      {/* Hero — warm sunset image with brown overlay */}
+      <section className="relative h-[260px] overflow-hidden">
+        <img src={getImageUrl('travel_top.jpg')} alt="人生记忆" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#3b2b25]/60 via-[#5e4030]/35 to-[#4c3327]/85" />
+        <div className="relative z-10 px-6 pt-9 text-white">
+          <div className="flex items-center gap-2">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/15 backdrop-blur-sm">
+              <BookOpen className="h-6 w-6" strokeWidth={1.6} />
+            </div>
+            <div>
+              <p className="font-serif text-xl font-bold tracking-[0.16em]">伴龄</p>
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/80">BANLING</p>
+            </div>
+          </div>
+          <h1 className="mt-7 font-serif text-[27px] font-bold leading-tight tracking-wide">与更好的风景相遇</h1>
+          <p className="mt-2 text-sm tracking-wide text-white/90">人生下半场，让旅行更有意义</p>
+          <div className="mt-5 h-0.5 w-10 bg-[#f5d6a1]" />
         </div>
-      </div>
+      </section>
 
-      <div className="px-4 mt-4">
+      {/* Floating cream card overlapping hero */}
+      <section className="relative z-20 -mt-6 px-4">
+        {/* Tab switcher */}
         {/* Tab switcher */}
         <div className="flex bg-oshiruco-100 rounded-xl p-1 mb-5">
           {(['themes', 'my'] as const).map(t => (
-            <button key={t} onClick={() => setTab(t)}
-              className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === t ? 'bg-white text-oshiruco-700 shadow-sm' : 'text-oshiruco-400 hover:text-oshiruco-600'}`}>
-              {t === 'themes' ? '旅行主题' : '我的行程' }
-            </button>
+              <button key={t} onClick={() => setTab(t)}
+                      className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${tab === t ? 'bg-white text-oshiruco-700 shadow-sm' : 'text-oshiruco-400 hover:text-oshiruco-600'}`}>
+                {t === 'themes' ? '旅行主题' : '我的行程' }
+              </button>
           ))}
         </div>
 
+      </section>
+
+
+
+      <div className="px-4 mt-4">
         {tab === 'themes' && (
           <div className="space-y-5">
             {/*<p className="text-xs font-semibold text-oshiruco-500 uppercase tracking-widest">おすすめ旅行テーマ</p>*/}
