@@ -329,7 +329,7 @@ export default function Discovery() {
                   {post.image_url ? (
                       <img src={post.image_url} alt={post.title} className="w-full h-88 object-cover" />
                   ) : (
-                      <img src={fallbackImage(post.id)} alt={post.title} className="w-full h-88 object-cover" />
+                      <img src={getImageUrl('d5.jpg')} alt={post.title} className="w-full h-88 object-cover" />
                   )}
                   <div className="p-4">
                     <div className="flex items-center gap-3 mb-3">
